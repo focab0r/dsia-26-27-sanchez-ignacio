@@ -1,1 +1,5 @@
+# Env files
 venv/
+
+# Secrets
+.env
