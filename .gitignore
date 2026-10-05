@@ -3,3 +3,6 @@ venv/
 
 # Secrets
 .env
+
+# Python files
+__pycache__/
