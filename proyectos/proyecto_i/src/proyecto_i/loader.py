@@ -7,7 +7,7 @@ import json
 
 DEFAULT_LATITUDE = "40.42"		# Madrid
 DEFAULT_LONGITUDE = "-3.70"		# Madrid
-DEFAULT_START_DATE = "2015-10-05"
+DEFAULT_START_DATE = "1940-01-02"
 
 def download_json(latitude, longitude, start_date, end_date):
 	print("[*] Downloading content...")

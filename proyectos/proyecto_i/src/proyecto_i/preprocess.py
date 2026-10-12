@@ -4,8 +4,7 @@ from proyecto_i.contract import YearModel
 
 def saveData(l):
 
-
-	l = []
+	r = []
 	for year in l:
 		july = year.pop()
 		august = year.pop()
@@ -22,9 +21,10 @@ def saveData(l):
 			may=year[9],
 			june=year[10],
 			target=year[11])
-		l.append(y)
+		r.append(y)
 	
-	return l
+	return r
+
 
 def preprocessDict(d):
 	d_time = d["daily"]["time"]
