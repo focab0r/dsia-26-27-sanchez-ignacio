@@ -1,9 +1,10 @@
 # Env files
-venv/
+.venv/
 
 # Secrets
 .env
 
 # Python files
 __pycache__/
+.pytest_cache/
 uv.lock
