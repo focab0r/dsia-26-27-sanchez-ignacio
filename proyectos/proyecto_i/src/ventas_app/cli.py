@@ -16,9 +16,10 @@ if __name__ == "__main__":
 	parser.add_argument('--output', help='Output cleaned CSV file')
 	args = parser.parse_args()
 
-	df = load_csv(args.input)
-	df_cleaned = clean_data(df)
+	df = load_csv(args.input)		# Load data
+	df_cleaned = clean_data(df)		# Clean data
 
+	# Save data
 	if args.output:
 		with open(args.output, "w") as f:
 			for elem in df_cleaned:

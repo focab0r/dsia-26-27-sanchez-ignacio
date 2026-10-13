@@ -12,6 +12,6 @@ def clean_data(df):
 		try:
 			l.append(VentaModel(**value))
 		except:
-			print(f'[-] Unable to load row {id_row}')
+			print(f'[-] Unable to process row {id_row}')
 
 	return l
