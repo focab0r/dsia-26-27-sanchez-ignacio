@@ -3,7 +3,7 @@
 import os
 import pandas as pd
 
-DEFAULT_INPUT_PATH = "data/ventas.csv"
+DEFAULT_INPUT_PATH = "proyectos/proyecto_i/data/ventas.csv"
 
 
 def load_csv(path):
