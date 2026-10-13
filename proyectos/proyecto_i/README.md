@@ -22,9 +22,9 @@ Pipeline:
 │       ├── loader.py		# Load the data from a path
 │       └── preprocess.py	# Process and clean the data. Check the validity by using the contract
 │
-├── tests
-│   └── ventas_app
-│       └── test.py
+└── tests
+    └── ventas_app
+        └── test.py
 ```
 
 ### Execution
@@ -99,7 +99,7 @@ https://archive-api.open-meteo.com/v1/archive?latitude={latitude}&longitude={lon
 Parameters:
 - **latitude**: By default `40.42` (defaults to Madrid)
 - **longitude**: By default `-3.70` (defaults to Madrid)
-- **start_date**: By default `1940-01-02` (default to the first date saved)
+- **start_date**: By default `1940-01-02` (defaults to the first date saved in the API)
 - **end_date**:  By default `2026-10-05`. This will be changed in the future to select the last data available.
 
 ### Files
@@ -113,9 +113,9 @@ Parameters:
 │       ├── loader.py		# Download the data from the API
 │       └── preprocess.py	# Process and clean the data. Check the validity by using the contract
 │
-├── tests
-│   └── proyecto_i
-│       └── test.py
+└── tests
+    └── proyecto_i
+        └── test.py
 ```
 
 An example of the output CSV can be found at [here](data/rain_data.csv)
@@ -148,7 +148,9 @@ $> uv run --project proyectos/proyecto_i/ python -m proyecto_i.cli --output new_
 [*] Added year 1945 to list
 [*] Added year 1946 to list
 [*] Added year 1947 to list
+
 [...SNIP...]
+
 [*] Added year 2017 to list
 [*] Added year 2018 to list
 [*] Added year 2019 to list
@@ -159,7 +161,7 @@ $> uv run --project proyectos/proyecto_i/ python -m proyecto_i.cli --output new_
 [*] Added year 2024 to list
 [*] Added year 2025 to list
 [+] Finished preprocess
-[+] Data sed to file new_data.csv
+[+] Data saved to file new_data.csv
 [+++] Finished
 ```
 
