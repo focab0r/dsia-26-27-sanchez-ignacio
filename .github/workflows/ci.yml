@@ -1,4 +1,4 @@
-iname: project-i-ci
+name: project-i-ci
 
 jobs:
   uv-example:
