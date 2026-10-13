@@ -14,6 +14,8 @@ jobs:
       - name: Install the project
         run: uv sync --locked --all-extras --dev --project proyectos/proyecto_i/
 
-      - name: Run tests
-        run: uv run --project proyectos/proyecto_i/ pytest proyectos/proyecto_i/tests/proyecto_i/test.py
+      - name: Run tests for ventas
         run: uv run --project proyectos/proyecto_i/ pytest proyectos/proyecto_i/tests/ventas_app/test.py
+
+      - name: Run tests for project-i        
+        run: uv run --project proyectos/proyecto_i/ pytest proyectos/proyecto_i/tests/proyecto_i/test.py
