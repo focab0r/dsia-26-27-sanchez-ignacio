@@ -18,4 +18,5 @@ if __name__ == "__main__":
 	with open(args.output, "w") as f:
 		for elem in l:
 			f.write(f'{elem.september},{elem.october},{elem.november},{elem.december},{elem.january},{elem.february},{elem.march},{elem.april},{elem.may},{elem.june},{elem.target}\n')
-	
+	print(f'[+] Data saved to file {args.output}')
+	print("[+++] Finished")
