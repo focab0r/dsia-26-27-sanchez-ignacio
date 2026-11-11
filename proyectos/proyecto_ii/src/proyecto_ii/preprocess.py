@@ -159,4 +159,6 @@ def correct_values(df):
 	cols = ["81", "82", "83", "86", "87", "88", "89"]
 	df[cols] = df[cols].fillna(df.groupby(keys)[cols].transform('mean'))
 	print("[+] Corrected")
+	print("[*] Null values in each column:")
+	print(df.isnull().sum())
 	return df

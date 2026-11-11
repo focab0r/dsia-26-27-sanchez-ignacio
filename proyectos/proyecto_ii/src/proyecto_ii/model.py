@@ -4,6 +4,8 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
+import joblib
 
 
 X_VALUES = [
@@ -17,6 +19,7 @@ X_VALUES = [
 ]
 
 TARGET = "target"
+
 
 
 def train_model(df):
@@ -40,3 +43,18 @@ def train_model(df):
 	print("[*] Correlation matrix:")
 	matrix = X.corr()
 	print(matrix)
+
+	return model
+
+
+def save_model(model, path):
+	joblib.dump(model, path)
+
+
+def load_model(path):
+	model = joblib.load(path)
+	return model
+
+def predict_model(model, df):
+	result = model.predict(df)
+	return result

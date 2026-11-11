@@ -1,6 +1,7 @@
 
 import os
 import pandas as pd
+from pathlib import Path
 
 DEFAULT_LATITUDE = "40.42"		# Madrid
 DEFAULT_LONGITUDE = "-3.70"		# Madrid
@@ -21,7 +22,8 @@ def load_csvs_from_file(path):
 	return new_df
 
 
-def load_data(dir):
+def load_data(dir_str):
+	dir = Path(dir_str)
 	df_calidad = load_csvs_from_file(dir / DEFAULT_DIR_CALIDAD)
 	df_metereologia = load_csvs_from_file(dir / DEFAULT_DIR_METEREOLOGIA)
 	return df_calidad, df_metereologia
