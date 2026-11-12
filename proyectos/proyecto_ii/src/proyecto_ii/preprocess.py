@@ -1,7 +1,9 @@
 
 
-from proyecto_ii.contract import LineModel
 import pandas as pd
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 DEFAULT_TARGET = 14		# Ozono
@@ -143,22 +145,22 @@ def preprocess_metereologia(df_calidad, df_metereologia):
 
 def preprocess_data(df_calidad, df_metereologia):
 	
-	print("[*] Processing calidad...")
+	logger.info(f"Processing calidad...")
 	df_calidad = preprocess_calidad(df_calidad)
-	print("[+] Processed")
-	print("[*] Processing metereologia...")
+	logger.info(f"Processed")
+	logger.info(f"Processing metereologia...")
 	df_total = preprocess_metereologia(df_calidad, df_metereologia)
-	print("[+] Processed")
+	logger.info(f"Processed")
 
 	return df_total
 
 
 def correct_values(df):
-	print("[*] Correcting values...")
+	logger.info(f"Correcting values...")
 	keys = ["year", "month", "day"]
 	cols = ["81", "82", "83", "86", "87", "88", "89"]
 	df[cols] = df[cols].fillna(df.groupby(keys)[cols].transform('mean'))
-	print("[+] Corrected")
+	logger.info(f"Corrected")
 	print("[*] Null values in each column:")
 	print(df.isnull().sum())
 	return df

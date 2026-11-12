@@ -3,6 +3,10 @@
 import argparse
 import pandas as pd
 from dotenv import load_dotenv
+import logging
+from logging import config
+from datetime import date
+from pathlib import Path
 
 from proyecto_ii.loader import load_data
 from proyecto_ii.preprocess import preprocess_data, correct_values
@@ -14,7 +18,22 @@ DEFAULT_LOAD_PATH = "/home/focab0r/Downloads/DSIA"
 DEFAULT_TRAINING_PATH = "data/training_data.csv"
 DEFAULT_MODEL_PATH = "data/model.joblib"
 DEFAULT_PREDICTION_PATH = "data/prediction.csv"
+DEFAULT_LOG_PATH = "logs"
+DEFAULT_LOGGING_CONFIG_PATH = "logging.conf"
 
+
+
+def setup_logging() -> None:
+    log_dir = Path(DEFAULT_LOG_PATH)
+    log_path = log_dir / f"log_{date.today()}.log"
+ 
+    print(f"[*] Logging data into {log_path}")
+    config.fileConfig(
+        DEFAULT_LOGGING_CONFIG_PATH,
+        defaults={"logfilename": log_path.as_posix()},
+        disable_existing_loggers=False,
+    )
+    logging.getLogger("proyecto_ii").info("Starting log...")
 
 def load():
 	df_calidad, df_metereologia = load_data(DEFAULT_LOAD_PATH)
@@ -34,20 +53,20 @@ def predict(df):
 
 def ask_agent(data):
 	load_dotenv()
-	print("[*] Calling agent...")
+	logging.getLogger("proyecto_ii").info("Calling agent...")
 	if "[mock]" in data:
-		print("[*] Mock mode activated")
+		logging.getLogger("proyecto_ii").info("Mock mode activated")
 		result =  {'81': 1.0, '82': 45.0, '83': 27.0, '86': 35.0, '87': 942.0, '88': 300.0, '89': 0.0}
-		print(f"[+] Get response from agent: {result}")
+		logging.getLogger("proyecto_ii").info(f"Get response from agent: {result}")
 		return result
 
 	result = call_agent(data)
 	if result["status"] == "error":
-		print(f"[X] ERROR: {result["error"]}")
+		logging.getLogger("proyecto_ii").error(f"Error in the response of the agent: {result["error"]}")
 		return None
 	else:
-		print(f"[+] Get response from agent: {result["data"]}")
-		return result[data]
+		logging.getLogger("proyecto_ii").info(f"Get response from agent: {result["data"]}")
+		return result["data"]
 
 
 if __name__ == "__main__":
@@ -58,6 +77,8 @@ if __name__ == "__main__":
 	parser.add_argument('-p', '--predict', help='Make a prediction from a CSV file')
 	parser.add_argument('-a', '--ask-agent', help='Ask an agent to create the CSV values and predictions')
 	args = parser.parse_args()
+
+	setup_logging()
 
 	if args.load:
 		load()

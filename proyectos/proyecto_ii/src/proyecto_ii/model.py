@@ -6,6 +6,9 @@ from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import StandardScaler
 import matplotlib.pyplot as plt
 import joblib
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 X_VALUES = [
@@ -35,24 +38,28 @@ def train_model(df):
 
 	model.fit(scaled_numeric_df, y_train)
 
+	logger.info(f"Model trained")
+
 	scaled_numeric = scaler.transform(X_test)
 	scaled_numeric_df = pd.DataFrame(scaled_numeric, columns=X_VALUES)
 
-	print(f"[*] R2 score: {model.score(scaled_numeric_df, y_test)}")
+	logger.info(f"R2 score: {model.score(scaled_numeric_df, y_test)}")
 
-	print("[*] Correlation matrix:")
-	matrix = X.corr()
-	print(matrix)
+	# print("[*] Correlation matrix:")
+	# matrix = X.corr()
+	# print(matrix)
 
 	return model
 
 
 def save_model(model, path):
 	joblib.dump(model, path)
+	logger.info(f"Model saved")
 
 
 def load_model(path):
 	model = joblib.load(path)
+	logger.info(f"Model loaded")
 	return model
 
 def predict_model(model, df):
