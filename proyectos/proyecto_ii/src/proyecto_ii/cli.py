@@ -57,7 +57,7 @@ def ask_agent(data):
 	if "[mock]" in data:
 		logging.getLogger("proyecto_ii").info("Mock mode activated")
 		result =  {'81': 1.0, '82': 45.0, '83': 27.0, '86': 35.0, '87': 942.0, '88': 300.0, '89': 0.0}
-		logging.getLogger("proyecto_ii").info(f"Get response from agent: {result}")
+		logging.getLogger("proyecto_ii").info(f"Got response from agent: {result}")
 		return result
 
 	result = call_agent(data)
